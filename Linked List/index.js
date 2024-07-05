@@ -30,3 +30,40 @@ var middleNode = function (head) {
   }
   return curr;
 };
+
+// Problem-3 : Detect linked list has a cycle(Leetcode 141)
+
+var hasCycle = function (head) {
+  if (head === null || head.next === null) {
+    return false;
+  }
+  let slow = head;
+  let fast = head;
+  while (fast !== null && fast.next !== null) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (slow === fast) {
+      return true;
+    }
+  }
+  return false;
+};
+
+// Problem-4 : Remove duplicates from a sorted linked list(Leetcode 83)
+
+var deleteDuplicates = function (head) {
+  let dummy = new ListNode(-101);
+  let itr = dummy;
+  let curr = head;
+  while (curr !== null) {
+    if (itr.val !== curr.val) {
+      itr.next = curr;
+      itr = itr.next;
+      curr = curr.next;
+    } else if (curr.val === itr.val) {
+      curr = curr.next;
+    }
+  }
+  if (curr === null) itr.next = null;
+  return dummy.next;
+};
