@@ -57,3 +57,45 @@ var search = function (nums, target) {
   }
   return binarySearch(pIdx, len - 1, nums, target);
 };
+
+// Problem - 3 : Segregate 0s and 1s in an array
+
+class Solution {
+  segregate0and1(arr) {
+    // code here
+    let i = 0,
+      j = -1;
+    while (i < arr.length) {
+      if (arr[i] === 0) {
+        j++;
+        let temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+      i++;
+    }
+  }
+}
+
+// Problem-4 : Segregate 0s , 1s , 2s in an array
+
+var swap = function (i, j, arr) {
+  let temp = arr[i];
+  arr[i] = arr[j];
+  arr[j] = temp;
+};
+
+var segregateZeroesOnesTwoes = function (arr) {
+  let len = arr.length;
+  let i = 0,
+    p1 = -1,
+    p2 = len - 1;
+
+  while (i <= p2) {
+    if (arr[i] === 0) {
+      swap(++p1, i++, arr);
+    } else if (arr[i] === 2) {
+      swap(p2--, i, arr);
+    } else i++;
+  }
+};
