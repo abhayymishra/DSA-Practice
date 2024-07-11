@@ -99,3 +99,23 @@ var segregateZeroesOnesTwoes = function (arr) {
     } else i++;
   }
 };
+
+// Problem-5 : Merge Intervals(leetcode 56)
+
+var merge = function (intervals) {
+  let res = [];
+  intervals.sort((a, b) => a[0] - b[0]);
+  let len = intervals.length;
+  let [prevS, prevE] = intervals[0];
+  for (let i = 1; i < len; i++) {
+    let [nextS, nextE] = intervals[i];
+    if (nextS <= prevE) {
+      prevE = Math.max(prevE, nextE);
+    } else {
+      res.push([prevS, prevE]);
+      [prevS, prevE] = intervals[i];
+    }
+  }
+  res.push([prevS, prevE]);
+  return res;
+};
