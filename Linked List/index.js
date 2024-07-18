@@ -67,3 +67,36 @@ var deleteDuplicates = function (head) {
   if (curr === null) itr.next = null;
   return dummy.next;
 };
+
+// Problem-5 : Merge the two sorted linked list(Leetcode 21)
+
+var mergeTwoLists = function (list1, list2) {
+  if (list1 === null) {
+    return list2;
+  }
+  if (list2 === null) {
+    return list1;
+  }
+
+  let dummy = new ListNode(-1);
+  let prev = dummy;
+  let c1 = list1,
+    c2 = list2;
+  while (c1 !== null && c2 !== null) {
+    if (c1.val < c2.val) {
+      prev.next = c1;
+      c1 = c1.next;
+    } else {
+      prev.next = c2;
+      c2 = c2.next;
+    }
+    prev = prev.next;
+  }
+  if (c1 !== null) {
+    prev.next = c1;
+  }
+  if (c2 !== null) {
+    prev.next = c2;
+  }
+  return dummy.next;
+};

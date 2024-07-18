@@ -119,3 +119,42 @@ var merge = function (intervals) {
   res.push([prevS, prevE]);
   return res;
 };
+
+// Problem-6 : Find second largest element in an array(gfg)
+
+class Solution {
+  // Function returns the second largest element
+  print2largest(arr) {
+    // Code Here
+    let len = arr.length;
+    let maxm = -1,
+      secondLargest = -1;
+    for (let i = 0; i < len; i++) {
+      if (arr[i] > maxm) {
+        secondLargest = maxm;
+        maxm = arr[i];
+      }
+      if (arr[i] > secondLargest && arr[i] < maxm) {
+        secondLargest = arr[i];
+      }
+    }
+    return secondLargest;
+  }
+}
+
+// Problem-7 : Kth largest element in an array
+
+// Problem-8 : Counting Bits(Leetcode 338)
+
+var countBits = function (n) {
+  let result = Array(n + 1).fill(0);
+
+  for (let i = 1; i <= n; i++) {
+    if (i % 2 !== 0) {
+      result[i] = result[Math.floor(i / 2)] + 1;
+    } else {
+      result[i] = result[i / 2];
+    }
+  }
+  return result;
+};

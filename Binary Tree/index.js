@@ -67,3 +67,31 @@ var isValidBST = function (root) {
 
   return inorder(root);
 };
+
+// Problem - 3 : Construct Binary Tree from Preorder and Inorder Traversals(Leetcode 105)
+
+var solve = function (preorder, inorder, start, end, idxObj) {
+  if (start > end) {
+    return null;
+  }
+
+  let rootVal = preorder[idxObj.idx];
+  let i = start;
+  for (; i <= end; i++) {
+    if (inorder[i] === rootVal) {
+      break;
+    }
+  }
+
+  idxObj.idx++;
+  let root = new TreeNode(rootVal);
+  root.left = solve(preorder, inorder, start, i - 1, idxObj);
+  root.right = solve(preorder, inorder, i + 1, end, idxObj);
+  return root;
+};
+
+var buildTree = function (preorder, inorder) {
+  let len = preorder.length;
+  let idxObj = { idx: 0 };
+  return solve(preorder, inorder, 0, len - 1, idxObj);
+};
