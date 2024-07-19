@@ -100,3 +100,61 @@ var mergeTwoLists = function (list1, list2) {
   }
   return dummy.next;
 };
+
+// Problem-6 : Remove Nth Node From End of List(Leetcode-19)
+
+var totalNodes = function (head) {
+  let itr = head;
+  let count = 0;
+  while (itr !== null) {
+    count++;
+    itr = itr.next;
+  }
+  return count;
+};
+var removeNthFromEnd = function (head, n) {
+  let prev = null,
+    temp = head;
+  let count = 0;
+  let len = totalNodes(head);
+  let travel = len - n;
+  if (n > len) {
+    return head;
+  }
+  if (n === len) {
+    return head.next;
+  }
+  while (travel--) {
+    prev = temp;
+    temp = temp.next;
+    count++;
+  }
+  prev.next = temp.next;
+  return head;
+};
+
+// Problem-7 : Move the even items to the end of the linkedlist(gfg - segregate even and odd nodes)
+
+class Solution {
+  divide(N, head) {
+    //code here
+    let dummyO = new Node(-1);
+    let dummyE = new Node(-1);
+    let oddP = dummyO;
+    let evenP = dummyE;
+    let itr = head;
+    while (itr !== null) {
+      if (itr.data % 2 === 0) {
+        evenP.next = itr;
+        evenP = evenP.next;
+      } else {
+        oddP.next = itr;
+        oddP = oddP.next;
+      }
+      itr = itr.next;
+    }
+    oddP.next = dummyE.next;
+    evenP.next = null;
+    return dummyO.next;
+  }
+}
