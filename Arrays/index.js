@@ -158,3 +158,38 @@ var countBits = function (n) {
   }
   return result;
 };
+
+//Problem-9 : Two Sum(Leetcode-1)
+
+var twoSum = function (arr, target) {
+  let len = arr.length;
+  let res = [];
+  let map = new Map();
+  for (let i = 0; i < len; i++) {
+    let num = target - arr[i];
+    if (map.has(num)) {
+      res[0] = map.get(num);
+      res[1] = i;
+    } else {
+      map.set(arr[i], i);
+    }
+  }
+  return res;
+};
+
+// Problem-10 : Best Time to Buy and Sell Stock(Leetcode-121)
+
+var maxProfit = function (prices) {
+  let len = prices.length;
+  let minPrice = Infinity;
+  let maxProfit = 0;
+  for (let i = 0; i < len; i++) {
+    let balance = prices[i] - minPrice;
+    if (prices[i] < minPrice) {
+      minPrice = prices[i];
+    } else if (balance > maxProfit) {
+      maxProfit = balance;
+    }
+  }
+  return maxProfit;
+};
